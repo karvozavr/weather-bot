@@ -47,7 +47,7 @@ async def make_weather_service_query(url: str) -> WeatherInfo:
 
 
 def get_weather_from_response(json):
-    return WeatherInfo(json['main']['temp'], json['weather'][0]['description'])    
+    return WeatherInfo(json['main']['temp'], json['weather'][0]['description'])
 
 
 def kelvin_to_celsius(degrees):
