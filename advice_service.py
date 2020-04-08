@@ -27,7 +27,7 @@ def get_status_advice(weather: str) -> str:
     return ''
 
 
-def get_advice(weather: WeatherInfo) -> List[str]:
+def get_advice(weather: WeatherInfo) -> str:
     advice = get_temperature_advice(weather.temperature)
     advice += '\n'
     advice += get_status_advice(weather.status)
