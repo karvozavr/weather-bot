@@ -6,6 +6,7 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import InlineQuery, InlineQueryResultArticle, InputTextMessageContent
 
 from bot_messages import get_message
+from advice_service import get_advice
 from weather_service import WeatherServiceException, WeatherInfo, get_weather_for_city, get_weather_for_location
 
 
@@ -34,7 +35,11 @@ async def get_weather_in_city(message: types.Message):
     except WeatherServiceException:
         await message.reply(WEATHER_RETRIEVAL_FAILED_MESSAGE)
         return
-    response = get_message('weather_in_city_message').format(message.text, weather.status, weather.temperature)
+
+    response = get_message('weather_in_city_message') \
+        .format(message.text, weather.status, weather.temperature)+ '\n\n' + \
+        get_advice(weather)
+
     await message.reply(response)
 
 
@@ -52,7 +57,10 @@ async def get_weather_in_location(message: types.Message):
             await message.reply(WEATHER_RETRIEVAL_FAILED_MESSAGE)
             return
 
-        response = get_message('weather_in_location_message').format(message.text, weather.status, weather.temperature)
+        response = get_message('weather_in_location_message') \
+            .format(weather.status, weather.temperature) + '\n\n' + \
+            get_advice(weather)
+
         await message.reply(response)
             
     await message.reply(WEATHER_RETRIEVAL_FAILED_MESSAGE)
