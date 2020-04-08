@@ -27,7 +27,7 @@
 
 Желательно запускать в UNIX-like системе (Linux или Mac OS).
 
-Добавить в переменные окружения ключи API Telegram и Openweathermap. И данные прокси-сервера для телеграм, если он не доступен. 
+Добавить в переменные окружения ключ API Telegram (получается у [@BotFather](https://telegram.me/botfather) при создании нового бота командой /newbot) и ключ API [OpenWeatherMap](https://openweathermap.org/). И данные прокси-сервера для телеграм, если он не доступен. 
 
 ```
 export TELEGRAM_API_TOKEN=...
