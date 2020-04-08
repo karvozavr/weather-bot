@@ -11,5 +11,6 @@ MESSAGES = {
     'help': 'Я умею показывать погоду в вашем городе, введите название города или отправьте местоположение.'
 }
 
+
 def get_message(message_key: str):
     return MESSAGES[message_key]
