@@ -14,7 +14,7 @@
 
 ## Демо
 
-[https://www.youtube.com/watch?v=APs0A1dn28c](видео (YouTube))
+[видео (YouTube)](https://www.youtube.com/watch?v=APs0A1dn28c)
 
 ## Процесс работы
 
