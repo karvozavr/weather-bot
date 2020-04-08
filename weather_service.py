@@ -9,7 +9,7 @@ import urllib
 WEATHER_SERVICE_API_KEY = os.getenv('WEATHER_SERVICE_API_KEY')
 
 
-class WeatherServiceException:
+class WeatherServiceException(BaseException):
     pass
 
 
@@ -19,9 +19,6 @@ class WeatherInfo:
         self.temperature = kelvin_to_celsius(
             temperature) if is_kelvin else temperature
         self.status = status
-
-    def __str__(self):
-        return f'{self.status}, температура {self.temperature}'
 
 
 async def get_weather_for_city(city_name: str) -> WeatherInfo:
@@ -50,7 +47,7 @@ async def make_weather_service_query(url: str) -> WeatherInfo:
 
 
 def get_weather_from_response(json):
-    return WeatherInfo(json['main']['temp'], json['weather']['description'])    
+    return WeatherInfo(json['main']['temp'], json['weather'][0]['description'])    
 
 
 def kelvin_to_celsius(degrees):
