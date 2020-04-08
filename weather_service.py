@@ -40,13 +40,17 @@ def get_location_query_url(location: Location):
     return f'http://api.openweathermap.org/data/2.5/weather?lat={location.latitude}&lon={location.longitude}&appid={WEATHER_SERVICE_API_KEY}&lang=ru'
 
 
-async def make_weather_service_query(url: str):
+async def make_weather_service_query(url: str) -> WeatherInfo:
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as resp:
-            print(resp.status)
-            print(await resp.text())
+            if resp.status == 200:
+                return get_weather_from_response(await resp.json())
 
     raise WeatherServiceException()
+
+
+def get_weather_from_response(json):
+    return WeatherInfo(json['main']['temp'], json['weather']['description'])    
 
 
 def kelvin_to_celsius(degrees):
