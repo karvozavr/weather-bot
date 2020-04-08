@@ -62,6 +62,7 @@ async def get_weather_in_location(message: types.Message):
             get_advice(weather)
 
         await message.reply(response)
+        return
             
     await message.reply(WEATHER_RETRIEVAL_FAILED_MESSAGE)
 
